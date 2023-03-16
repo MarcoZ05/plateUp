@@ -19,7 +19,9 @@ class Player {
         ctx.fillRect(this.x - this.width / 2, this.y - this.height / 2, this.width, this.height);
         // draw the direction
         ctx.beginPath();
-        ctx.strokeStyle = "red";
+        ctx.lineWidth = 15;
+        ctx.lineCap = "round";
+        ctx.strokeStyle = "black";
         ctx.moveTo(this.x, this.y);
         ctx.lineTo(this.x +
             this.width * (this.direction.d ? 1 : 0) -
