@@ -41,6 +41,7 @@ class Player {
 
     // draw the direction
     ctx.beginPath();
+    ctx.strokeStyle = "red";
     ctx.moveTo(this.x, this.y);
     ctx.lineTo(
       this.x +
