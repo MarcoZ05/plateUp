@@ -4,17 +4,15 @@ class KeyListener {
         this.keyCallback = {};
         this.keyMap = {};
         window.addEventListener("keydown", (e) => {
-            this.keyState[e.key] = true;
+            this.keyState[e.key.toLowerCase()] = true;
         });
         window.addEventListener("keyup", (e) => {
-            this.keyState[e.key] = false;
+            this.keyState[e.key.toLowerCase()] = false;
         });
     }
-    addKeys(keys, func, callback) {
-        keys.forEach((key) => {
-            this.keyMap[key] = func;
-            this.keyCallback[key] = callback;
-        });
+    addKey(key, func, callback) {
+        this.keyMap[key] = func;
+        this.keyCallback[key] = callback;
     }
     update() {
         Object.keys(this.keyMap).forEach((key) => {

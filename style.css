@@ -10,15 +10,6 @@ canvas {
     height: 100vh;
     aspect-ratio: 16/9;
     background-color: white;
-    image-rendering: pixelated;
-    image-rendering: crisp-edges;
-    image-rendering: -moz-crisp-edges;
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: optimize-contrast;
-    image-rendering: -o-crisp-edges;
-    image-rendering: -webkit-crisp-edges;
-    -ms-interpolation-mode: nearest-neighbor;
-
 }
 
 @media (max-aspect-ratio: 16/9) {

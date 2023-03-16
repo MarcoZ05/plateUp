@@ -12,7 +12,6 @@ class Game {
     // get canvas and context
     this.canvas = canvas;
     this.ctx = this.canvas.getContext("2d")!;
-    this.ctx.imageSmoothingEnabled = false;
     // set canvas size
     this.canvas.width = size.w;
     this.canvas.height = size.h;
@@ -59,29 +58,29 @@ class Game {
   }
 
   initPlayerControl(player: Player, steps: number = 10) {
-    this.keyListener.addKeys(
-      ["w", "W", "ArrowUp"],
+    this.keyListener.addKey(
+      "w",
       () => {
         player.move({ x: 0, y: -steps }, this.gameObjects, this.canvas);
       },
       (w: boolean) => (player.direction.w = w)
     );
-    this.keyListener.addKeys(
-      ["s", "S", "ArrowDown"],
+    this.keyListener.addKey(
+      "s",
       () => {
         player.move({ x: 0, y: steps }, this.gameObjects, this.canvas);
       },
       (s: boolean) => (player.direction.s = s)
     );
-    this.keyListener.addKeys(
-      ["a", "A", "ArrowLeft"],
+    this.keyListener.addKey(
+      "a",
       () => {
         player.move({ x: -steps, y: 0 }, this.gameObjects, this.canvas);
       },
       (a: boolean) => (player.direction.a = a)
     );
-    this.keyListener.addKeys(
-      ["d", "D", "ArrowRight"],
+    this.keyListener.addKey(
+      "d",
       () => {
         player.move({ x: steps, y: 0 }, this.gameObjects, this.canvas);
       },
