@@ -1,9 +1,15 @@
 class GameItem {
   name: string;
   image: HTMLImageElement = new Image();
-  constructor(name: string, imageSrc: string) {
+  combinations:{};
+  constructor(name: string, imageSrc: string, combinations:{}) {
     this.name = name;
     this.image.src = imageSrc;
+    this.combinations = combinations
+  }
+
+  combine(item:GameItem){
+
   }
 
   draw(
