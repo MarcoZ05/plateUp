@@ -51,6 +51,9 @@ class Game {
         this.keyListener.addKey("d", () => {
             player.move({ x: steps, y: 0 }, this.gameObjects, this.canvas);
         }, (d) => (player.direction.d = d));
+        this.keyListener.addKey("e", () => {
+            player.changeItem(this.gameObjects);
+        });
     }
     run() {
         this.draw();

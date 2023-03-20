@@ -11,9 +11,13 @@ class KeyListener {
     });
   }
 
-  addKey(key: string, func: () => void, callback: (state: boolean) => void) {
+  addKey(
+    key: string,
+    func: () => void,
+    callback: ((state: boolean) => void) | undefined = undefined
+  ) {
     this.keyMap[key] = func;
-    this.keyCallback[key] = callback;
+    if (callback !== undefined) this.keyCallback[key] = callback;
   }
 
   update() {
@@ -21,10 +25,11 @@ class KeyListener {
       if (this.keyState[key]) {
         this.keyMap[key]();
 
-        Object.keys(this.keyCallback).forEach((key2) => {
-          if (this.keyState[key2] !== undefined)
-            this.keyCallback[key2](this.keyState[key2]);
-        });
+        if (this.keyCallback[key] !== undefined)
+          Object.keys(this.keyCallback).forEach((key2) => {
+            if (this.keyState[key2] !== undefined)
+              this.keyCallback[key2](this.keyState[key2]);
+          });
       }
     });
   }

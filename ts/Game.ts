@@ -86,6 +86,9 @@ class Game {
       },
       (d: boolean) => (player.direction.d = d)
     );
+    this.keyListener.addKey("e", () => {
+      player.changeItem(this.gameObjects);
+    });
   }
 
   run() {

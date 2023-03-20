@@ -1,15 +1,28 @@
 class GameItem {
   name: string;
   image: HTMLImageElement = new Image();
-  combinations:{};
-  constructor(name: string, imageSrc: string, combinations:{}) {
+  combinations: {};
+  interactions: string[]; // "cook", "place", "combine"
+  cookingTime: number = 0;
+  constructor(
+    name: string,
+    imageSrc: string,
+    combinations: {} = {},
+    interactions: string[] = ["place"]
+  ) {
     this.name = name;
     this.image.src = imageSrc;
-    this.combinations = combinations
+    this.combinations = combinations;
+    this.interactions = interactions;
   }
 
-  combine(item:GameItem){
-
+  cook() {
+    if (this.interactions.includes("cook")) {
+      this.image.src = this.image.src.replace(
+        this.image.src[this.image.src.length - 5],
+        (parseInt(this.image.src[this.image.src.length - 5]) + 1).toString()
+      );
+    }
   }
 
   draw(
@@ -17,9 +30,18 @@ class GameItem {
     x: number,
     y: number,
     width: number,
-    height: number
+    height: number,
+    showCookingTime: boolean = false
   ) {
     ctx.drawImage(this.image, x, y, width, height);
+
+    // draw cooking time
+    if (this.interactions.includes("cook") && showCookingTime) {
+      ctx.fillStyle = "black";
+      ctx.fillRect(x, y + height - 10, width, 10);
+      ctx.fillStyle = "red";
+      ctx.fillRect(x, y + height - 10, (width / 100) * this.cookingTime, 10);
+    }
   }
 }
 

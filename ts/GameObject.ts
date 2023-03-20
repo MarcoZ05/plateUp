@@ -26,6 +26,17 @@ class GameObject {
     // check if image is loaded
     if (this.image.complete)
       ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+
+    // draw the placed item
+    if (this.placedItem)
+      this.placedItem.draw(
+        ctx,
+        this.x + this.width / 4,
+        this.y + this.height / 4,
+        this.width / 2,
+        this.height / 2,
+        true
+      );
   }
 
   update() {}
