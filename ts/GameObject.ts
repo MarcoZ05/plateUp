@@ -22,12 +22,19 @@ class GameObject {
     this.image.style.imageRendering = "pixelated";
   }
 
-  draw(ctx: CanvasRenderingContext2D) {
-    // check if image is loaded
-    if (this.image.complete)
-      ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+  drawImage(ctx: CanvasRenderingContext2D): void {
+    if (this.image.complete) {
+      ctx.drawImage(
+        this.image,
+        this.x,
+        this.y,
+        this.width,
+        this.height
+      );
+    }
+  }
 
-    // draw the placed item
+  drawItem(ctx: CanvasRenderingContext2D): void {
     if (this.placedItem)
       this.placedItem.draw(
         ctx,
@@ -39,7 +46,16 @@ class GameObject {
       );
   }
 
-  update() {}
+
+  draw(ctx: CanvasRenderingContext2D): void {
+    // check if image is loaded
+    this.drawImage(ctx);
+
+    // draw the placed item
+    this.drawItem(ctx);
+  }
+
+  update() { }
 }
 
 export default GameObject;

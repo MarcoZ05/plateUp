@@ -8,12 +8,7 @@ class Player {
   height: number;
   image: HTMLImageElement = new Image();
   name: string;
-  holdingItem: GameItem | null = new GameItem(
-    "steak_0",
-    "./assets/steak_0.png",
-    {},
-    ["cook", "place"]
-  );
+  holdingItem: GameItem | null = null;
   itemChangePossible: boolean = true;
   direction: { w: boolean; a: boolean; s: boolean; d: boolean } = {
     w: false,
@@ -37,7 +32,7 @@ class Player {
     this.name = name;
   }
 
-  drawPlayer(ctx: CanvasRenderingContext2D) {
+  drawPlayer(ctx: CanvasRenderingContext2D): void {
     ctx.save();
     ctx.translate(this.x, this.y);
     if (this.direction.s && this.direction.a) ctx.rotate((1 * Math.PI) / 4);
@@ -60,7 +55,7 @@ class Player {
     ctx.restore();
   }
 
-  drawDirection(ctx: CanvasRenderingContext2D) {
+  drawDirection(ctx: CanvasRenderingContext2D): void {
     const newPos = this.getNewPos();
     if (!(newPos.x === this.x && newPos.y === this.y)) {
       ctx.beginPath();
@@ -73,7 +68,7 @@ class Player {
     }
   }
 
-  drawName(ctx: CanvasRenderingContext2D) {
+  drawName(ctx: CanvasRenderingContext2D): void {
     ctx.fillStyle = "black";
     ctx.font = "30px Comic Sans MS";
     ctx.textAlign = "center";
@@ -84,7 +79,7 @@ class Player {
     );
   }
 
-  drawItem(ctx: CanvasRenderingContext2D) {
+  drawItem(ctx: CanvasRenderingContext2D): void {
     // TODO: better item positioning
     if (this.holdingItem !== null)
       this.holdingItem.draw(
@@ -96,7 +91,7 @@ class Player {
       );
   }
 
-  getNewPos() {
+  getNewPos(): { x: number; y: number } {
     return {
       x:
         this.x +
@@ -109,7 +104,7 @@ class Player {
     };
   }
 
-  draw(ctx: CanvasRenderingContext2D) {
+  draw(ctx: CanvasRenderingContext2D): void {
     // draw the player
     this.drawPlayer(ctx);
 
@@ -123,14 +118,14 @@ class Player {
     this.drawItem(ctx);
   }
 
-  interact(gameObjects: GameObject[]) {
+  interact(gameObjects: GameObject[]): void {
     // get the object the player is looking at
     const watchedObject = this.getWatchedObject(gameObjects);
 
     //TODO: add interaction with other objects
   }
 
-  changeItem(gameObjects: GameObject[]) {
+  changeItem(gameObjects: GameObject[]): void {
     // return if the player is not allowed to change the item
     if (!this.itemChangePossible) return;
 
@@ -154,7 +149,7 @@ class Player {
     }, 250);
   }
 
-  getWatchedObject(gameObjects: GameObject[]) {
+  getWatchedObject(gameObjects: GameObject[]): GameObject | undefined {
     // get watched position
     const watchedPosition = {
       x:
@@ -185,7 +180,7 @@ class Player {
     steps: { x: number; y: number },
     gameObjects: GameObject[],
     canvas: HTMLCanvasElement
-  ) {
+  ): void {
     // check for every step if there is a collision
     for (let i = 0; i < Math.abs(steps.x); i++) {
       // check if there is a collision
@@ -218,7 +213,7 @@ class Player {
     }
   }
 
-  checkCollision(gameObjects: GameObject[], canvas: HTMLCanvasElement) {
+  checkCollision(gameObjects: GameObject[], canvas: HTMLCanvasElement): boolean {
     return (
       gameObjects.some((gameObject) => {
         // check if the player is colliding or inside the gameObject
@@ -237,11 +232,11 @@ class Player {
     );
   }
 
-  changeDirection(key: "w" | "a" | "s" | "d", value: boolean) {
+  changeDirection(key: "w" | "a" | "s" | "d", value: boolean): void {
     this.direction[key] = value;
   }
 
-  update() {}
+  update() { }
 }
 
 export default Player;

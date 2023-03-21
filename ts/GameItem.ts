@@ -16,13 +16,8 @@ class GameItem {
     this.interactions = interactions;
   }
 
-  cook() {
-    if (this.interactions.includes("cook")) {
-      this.image.src = this.image.src.replace(
-        this.image.src[this.image.src.length - 5],
-        (parseInt(this.image.src[this.image.src.length - 5]) + 1).toString()
-      );
-    }
+  cook(): GameItem {
+    return this
   }
 
   draw(
@@ -32,7 +27,7 @@ class GameItem {
     width: number,
     height: number,
     showCookingTime: boolean = false
-  ) {
+  ): void {
     ctx.drawImage(this.image, x, y, width, height);
 
     // draw cooking time
