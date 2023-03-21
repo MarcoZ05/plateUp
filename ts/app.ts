@@ -17,34 +17,34 @@ game.addPlayer(
 const worktop1 = new Worktop({
   x: 0,
   y: 0,
-  w: 250,
-  h: 250,
+  w: 200,
+  h: 200,
 });
 worktop1.placedItem = new Dish();
 game.addGameObject(worktop1);
 
 const worktop2 = new Worktop({
   x: 0,
-  y: 250,
-  w: 250,
-  h: 250,
+  y: 200,
+  w: 200,
+  h: 200,
 });
 worktop2.placedItem = new Steak_Raw();
 game.addGameObject(worktop2);
 
 const stove = new Stove({
   x: 0,
-  y: 500,
-  w: 250,
-  h: 250,
+  y: 400,
+  w: 200,
+  h: 200,
 });
 game.addGameObject(stove);
 
 const trash = new Trash({
   x: 0,
-  y: 750,
-  w: 250,
-  h: 250,
+  y: 600,
+  w: 200,
+  h: 200,
 });
 game.addGameObject(trash);
 

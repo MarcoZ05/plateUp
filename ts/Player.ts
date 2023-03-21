@@ -92,15 +92,16 @@ class Player {
   }
 
   getNewPos(): { x: number; y: number } {
+    const range = .8;
     return {
       x:
         this.x +
-        this.width * (this.direction.d ? 1 : 0) -
-        this.width * (this.direction.a ? 1 : 0),
+        this.width * (this.direction.d ? 1 : 0) * range -
+        this.width * (this.direction.a ? 1 : 0) * range,
       y:
         this.y +
-        this.height * (this.direction.s ? 1 : 0) -
-        this.height * (this.direction.w ? 1 : 0),
+        this.height * (this.direction.s ? 1 : 0) * range -
+        this.height * (this.direction.w ? 1 : 0) * range,
     };
   }
 
@@ -151,16 +152,7 @@ class Player {
 
   getWatchedObject(gameObjects: GameObject[]): GameObject | undefined {
     // get watched position
-    const watchedPosition = {
-      x:
-        this.x +
-        this.width * (this.direction.d ? 1 : 0) -
-        this.width * (this.direction.a ? 1 : 0),
-      y:
-        this.y +
-        this.height * (this.direction.s ? 1 : 0) -
-        this.height * (this.direction.w ? 1 : 0),
-    };
+    const watchedPosition = this.getNewPos();
 
     // get the object the player is looking at
     const watchedObject = gameObjects.find((gameObject) => {
