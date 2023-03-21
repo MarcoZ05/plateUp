@@ -1,2 +1,4 @@
 # make not upload js files
 /js/*.js
+/js/objects/*.js
+/js/items/*.js
