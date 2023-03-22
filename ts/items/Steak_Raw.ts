@@ -5,7 +5,7 @@ export class Steak_Raw extends GameItem {
   constructor() {
     super("steak_raw", "assets/steak_0.png", {
       dish: new Dish_Steak_Raw(),
-    }, ["place", "cook", "combine"]);
+    }, true, true);
   }
 
   cook() {

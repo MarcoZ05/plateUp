@@ -2,18 +2,20 @@ class GameItem {
   name: string;
   image: HTMLImageElement = new Image();
   combinations: Record<string, GameItem> = {};
-  interactions: string[]; // "cook", "place", "combine"
-  cookingTime: number = 0;
+  placeable: boolean = false;
+  cookingTime: number | null = null;
   constructor(
     name: string,
     imageSrc: string,
     combinations: Record<string, GameItem> = {},
-    interactions: string[] = ["place"]
+    placeable: boolean = false,
+    cookable: boolean = false
   ) {
     this.name = name;
     this.image.src = imageSrc;
     this.combinations = combinations;
-    this.interactions = interactions;
+    this.placeable = placeable;
+    if (cookable) this.cookingTime = 0;
   }
 
   combine(placedItem: GameItem) {
@@ -39,7 +41,7 @@ class GameItem {
     ctx.drawImage(this.image, x, y, width, height);
 
     // draw cooking time
-    if (this.interactions.includes("cook") && showCookingTime) {
+    if (showCookingTime && this.cookingTime !== null) {
       ctx.fillStyle = "black";
       ctx.fillRect(x, y + height - 10, width, 10);
       ctx.fillStyle = "red";

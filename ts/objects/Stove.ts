@@ -6,7 +6,7 @@ export class Stove extends GameObject {
   }
 
   update() {
-    if (this.placedItem && this.placedItem.interactions.includes("cook")) {
+    if (this.placedItem && this.placedItem.cookingTime !== null) {
       if (this.placedItem.cookingTime === undefined)
         this.placedItem.cookingTime = 0;
       this.placedItem.cookingTime++;
