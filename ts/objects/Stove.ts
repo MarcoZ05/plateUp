@@ -1,4 +1,5 @@
 import GameObject from "../GameObject.js";
+import { COOKING_TIME } from "../constants.js";
 
 export class Stove extends GameObject {
   constructor(settings: { x: number; y: number; w: number; h: number }) {
@@ -10,7 +11,7 @@ export class Stove extends GameObject {
       if (this.placedItem.cookingTime === undefined)
         this.placedItem.cookingTime = 0;
       this.placedItem.cookingTime++;
-      if (this.placedItem.cookingTime > 100) {
+      if (this.placedItem.cookingTime > COOKING_TIME) {
         this.placedItem.cookingTime = 0;
         this.placedItem = this.placedItem.cook();
       }

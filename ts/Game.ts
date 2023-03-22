@@ -41,6 +41,10 @@ class Game {
     // clear canvas
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
+    // draw background
+    this.ctx.fillStyle = "grey";
+    this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
     // draw game objects
     this.gameObjects.forEach((gameObject) => gameObject.draw(this.ctx));
 

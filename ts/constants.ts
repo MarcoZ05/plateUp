@@ -1,0 +1,1 @@
+export const COOKING_TIME = 500

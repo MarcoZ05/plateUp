@@ -1,3 +1,5 @@
+import { COOKING_TIME } from "./constants.js";
+
 class GameItem {
   name: string;
   image: HTMLImageElement = new Image();
@@ -44,8 +46,8 @@ class GameItem {
     if (showCookingTime && this.cookingTime !== null) {
       ctx.fillStyle = "black";
       ctx.fillRect(x, y + height - 10, width, 10);
-      ctx.fillStyle = "red";
-      ctx.fillRect(x, y + height - 10, (width / 100) * this.cookingTime, 10);
+      ctx.fillStyle = "lime";
+      ctx.fillRect(x, y + height - 10, (this.cookingTime / COOKING_TIME) * width, 10);
     }
   }
 }
