@@ -1,19 +1,27 @@
 class GameItem {
   name: string;
   image: HTMLImageElement = new Image();
-  combinations: {};
+  combinations: Record<string, GameItem> = {};
   interactions: string[]; // "cook", "place", "combine"
   cookingTime: number = 0;
   constructor(
     name: string,
     imageSrc: string,
-    combinations: {} = {},
+    combinations: Record<string, GameItem> = {},
     interactions: string[] = ["place"]
   ) {
     this.name = name;
     this.image.src = imageSrc;
     this.combinations = combinations;
     this.interactions = interactions;
+  }
+
+  combine(placedItem: GameItem) {
+    if (this.combinations[placedItem.name]) {
+      return this.combinations[placedItem.name];
+    } else {
+      return null;
+    }
   }
 
   cook(): GameItem {

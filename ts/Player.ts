@@ -126,6 +126,28 @@ class Player {
     //TODO: add interaction with other objects
   }
 
+  combine(gameObjects: GameObject[]): void {
+    if (this.holdingItem === null) return;
+
+    // get the object the player is looking at
+    const watchedObject = this.getWatchedObject(gameObjects);
+
+    // return if the player is not looking at an object or the object is not a game item
+    if (watchedObject === undefined || watchedObject.placedItem === null) return;
+
+    // combine the items if possible
+    const combinedItem = this.holdingItem.combine(watchedObject.placedItem);
+
+    // return if the items could not be combined
+    if (combinedItem === null) return;
+
+    // set the combined item to the watched object
+    watchedObject.placedItem = combinedItem;
+
+    // set the holding item to null
+    this.holdingItem = null;
+  }
+
   changeItem(gameObjects: GameObject[]): void {
     // return if the player is not allowed to change the item
     if (!this.itemChangePossible) return;

@@ -1,9 +1,11 @@
 import GameItem from "../GameItem.js";
-import { Steak_Cooked } from "../items.js";
+import { Dish_Steak_Raw, Steak_Cooked } from "../items.js";
 
 export class Steak_Raw extends GameItem {
   constructor() {
-    super("steak_raw", "assets/steak_0.png", {}, ["place", "cook", "combine"]);
+    super("steak_raw", "assets/steak_0.png", {
+      dish: new Dish_Steak_Raw(),
+    }, ["place", "cook", "combine"]);
   }
 
   cook() {

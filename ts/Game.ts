@@ -1,6 +1,8 @@
 import GameObject from "./GameObject.js";
 import KeyListener from "./KeyListener.js";
 import Player from "./Player.js";
+import { Dish, Dish_Steak_Raw, Steak_Raw } from "./items.js";
+import { Stove, Trash, Worktop } from "./objects.js";
 
 class Game {
   canvas: HTMLCanvasElement;
@@ -88,13 +90,72 @@ class Game {
     );
     this.keyListener.addKey("e", () => {
       player.changeItem(this.gameObjects);
+      player.combine(this.gameObjects);
     });
+  }
+
+  start() {
+    this.ctx.imageSmoothingEnabled = false;
+    this.run();
   }
 
   run() {
     this.draw();
     this.update();
     requestAnimationFrame(() => this.run());
+  }
+
+  test() {
+    this.addPlayer(
+      { x: 500, y: 500 },
+      { w: 150, h: 150 },
+      "./assets/player.png",
+      "CopiedByKakashi",
+      true
+    );
+
+    const worktop1 = new Worktop({
+      x: 0,
+      y: 0,
+      w: 200,
+      h: 200,
+    });
+    worktop1.placedItem = new Dish();
+    this.addGameObject(worktop1);
+
+    const worktop2 = new Worktop({
+      x: 0,
+      y: 200,
+      w: 200,
+      h: 200,
+    });
+    worktop2.placedItem = new Steak_Raw();
+    this.addGameObject(worktop2);
+
+    const worktop3 = new Worktop({
+      x: 0,
+      y: 400,
+      w: 200,
+      h: 200,
+    });
+    worktop3.placedItem = new Dish_Steak_Raw();
+    this.addGameObject(worktop3);
+
+    const stove = new Stove({
+      x: 0,
+      y: 600,
+      w: 200,
+      h: 200,
+    });
+    this.addGameObject(stove);
+
+    const trash = new Trash({
+      x: 0,
+      y: 880,
+      w: 200,
+      h: 200,
+    });
+    this.addGameObject(trash);
   }
 }
 
