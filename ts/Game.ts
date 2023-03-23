@@ -1,7 +1,7 @@
 import GameObject from "./GameObject.js";
 import KeyListener from "./KeyListener.js";
 import Player from "./Player.js";
-import { Dish, Dish_Steak_Raw, Steak_Raw } from "./items.js";
+import { Dish, Dish_Steak_Cooked, Dish_Steak_Raw, Steak_Raw } from "./items.js";
 import { Stove, Trash, Worktop } from "./objects.js";
 
 class Game {
@@ -142,7 +142,7 @@ class Game {
       w: 200,
       h: 200,
     });
-    worktop3.placedItem = new Dish_Steak_Raw();
+    worktop3.addServingItem(new Dish_Steak_Cooked());
     this.addGameObject(worktop3);
 
     const stove = new Stove({

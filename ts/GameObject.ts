@@ -46,7 +46,6 @@ class GameObject {
       );
   }
 
-
   draw(ctx: CanvasRenderingContext2D): void {
     // check if image is loaded
     this.drawImage(ctx);
@@ -55,7 +54,8 @@ class GameObject {
     this.drawItem(ctx);
   }
 
-  update() { }
+  update() {
+  }
 }
 
 export default GameObject;
